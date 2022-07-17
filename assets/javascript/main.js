@@ -1,5 +1,4 @@
-var escolhaDoPc = ["Chris Redfield", "Jill Valentine", "Albert Wesker", "Rebecca Chambers", "Barry Burton", "Claire Redfield", "Leon Kennedy", "Sherry Birkin", "Ada Wong", "HUNK", "Carlos Oliveira", "Steve Burnside", "Billy Cohen", "Ashley Graham", "Sheva Alomar", "Helena Harper", "Piers Nivans", "Jake Muller", "Parker Luciani", "Moira Burton", "Natalia Korda", "Ethan Winters", "Mia Winters", "Quint Cetcham",
-"Keith Lumley"];
+var escolhaDoPc = ["Chris Redfield", "Jill Valentine", "Albert Wesker", "Rebecca Chambers", "Barry Burton", "Claire Redfield", "Leon Kennedy", "Sherry Birkin", "Ada Wong", "HUNK", "Carlos Oliveira", "Steve Burnside", "Billy Coen", "Ashley Graham", "Sheva Alomar", "Helena Harper", "Piers Nivans", "Jake Muller", "Parker Luciani", "Moira Burton", "Natalia Korda", "Ethan Winters", "Mia Winters"];
 
 var vitorias = 0;
 var tentativaAtual = [];
