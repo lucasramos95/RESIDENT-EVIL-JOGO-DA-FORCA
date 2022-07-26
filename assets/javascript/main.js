@@ -1,19 +1,26 @@
+//array para todas as opções disponíveis
 var escolhaDoPc = ["Chris Redfield", "Jill Valentine", "Albert Wesker", "Rebecca Chambers", "Barry Burton", "Claire Redfield", "Leon Kennedy", "Sherry Birkin", "Ada Wong", "HUNK", "Carlos Oliveira", "Steve Burnside", "Billy Coen", "Ashley Graham", "Sheva Alomar", "Helena Harper", "Piers Nivans", "Jake Muller", "Parker Luciani", "Keith Lumley", "Moira Burton", "Natalia Korda", "Ethan Winters", "Mia Winters"];
 
+//manter variáveis para as vitórias, letras já adivinhadas e quantas ainda restam
 var vitorias = 0;
 var tentativaAtual = [];
 var tentativasRestantes = 6;
-var escolheu = [];
-var palavraAtual = [];
+var escolheu = []; //array para manter palavra escolhida
+var palavraAtual = []; //array para manter cada letra da palavra selecionada
 var letrasPermitidas = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "X", "W", "Y", "Z"];
 
+//pegar uma escolha aleatória do array com os personagens
 var escolhaDoComputador = escolhaDoPc[Math.floor(Math.random() * escolhaDoPc.length)];
 
+//"capitalize" o nome dos personagens, para o resto do código funcionar
+//criar nova variável para que assim, o conteúdo original é intocável
 var quem = escolhaDoComputador;
 escolhaDoComputador = escolhaDoComputador.toUpperCase();
 console.log("Computador Escolheu " + quem);
 
+//jogar cada letra na palavra como espaço em branco "-"
 for (var i = 0; i < escolhaDoComputador.length; i++) {
+    //se houver espaços na palavra, adicionar espaço " "
     if (escolhaDoComputador[i] === " ") {
         escolheu.push("&nbsp");
 
@@ -25,146 +32,168 @@ for (var i = 0; i < escolhaDoComputador.length; i++) {
     };
 };
 
-function updateHTML() {
+//Verificar se ambos os arrays são do mesmo tamanho
+//console.log(pick);
+//console.log(currentWord);
 
+//criar função que atualiza o html
+function atualizaHtml() {
     if (tentativasRestantes === 0) {
-        resultado("Perdeu");
+        resultado("perdeu");
     }
 
-    var vitoria = vitorias; 
-    var tentativa = tentativasRestantes;
-    var atual = tentativaAtual;
-    var escolha = escolheu; 
+    var vitoria = vitorias; //atualiza o contador de vitórias
+    var tentativa = tentativasRestantes; //mostra quantas tentativas ainda restam
+    var atual = tentativaAtual; //o que o usuário já escolheram
+    var selecao = escolheu; //o array que contem "_" e a resposta
 
-    document.getElementById("vitorias").innerHTML = vitoria; 
-    document.getElementById("tentativa").innerHTML = tentativa; 
-    document.getElementById("tentativaAtual").innerHTML = atual; 
-    document.getElementById("palavraAtual").innerHTML = escolha.join(""); 
+    document.getElementById("vitorias").innerHTML = vitoria; //aumenta contador se estiver ganhando
+    document.getElementById("tentativa").innerHTML = tentativa; //mostra quantas tentativas ainda restam
+    document.getElementById("tentativaAtual").innerHTML = atual; //atualiza o que  o usuario já acertou
+    document.getElementById("palavraAtual").innerHTML = selecao.join(""); //atualiza a palavra selecionada com aspas
+
+    //se o usuário gastar todas as tentativas, perde
 }
 
-//audio
-
-function perdeu() {
+//Criar função para tocar som quando o usuário perde
+function perde() {
     var audio = new Audio('assets/audio/gameover.mp3'), loopAudio = false;
-    audio.addEventListener('play', function () {   
+    audio.addEventListener('play', function () {
         this.currentTime = 52;
     });
     audio.addEventListener('ended', function () {
         if (loopAudio) {
             audio.play();
         }
-    });
+    });//corta música se o usuário aperta ok
     setTimeout(function () {
         loopAudio = true;
         audio.play();
-        alert("Você não sobreviveu, quer tentar novamente?");
+        alert("GAME OVER! Você não sobreviveu, gostaria de tentar novamente?");
         loopAudio = false;
-        audio.pause(); 
+        audio.pause();//se você quiser
     }, 200);
 }
 
-function vitoria() {
+//Tocar áudio, se o usuário ganhar o jogo
+function ganha() {
     var audio = new Audio('assets/audio/victory.mp3'), loopAudio = false;
-    audio.addEventListener('play', function () {   
-        this.currentTime = 9;
+    audio.addEventListener('play', function () {
+        this.currentTime = 9; 
     });
     audio.addEventListener('ended', function () {
         if (loopAudio) {
             audio.play();
         }
-    });
+    });//corta a música se o usuário aperta ok
     setTimeout(function () {
         loopAudio = true;
         audio.play();
-        alert("Você sobreviveu! Quer tentar novamente?");
+        alert("Você sobreviveu! Quer tentar novamente");
         loopAudio = false;
-        audio.pause(); 
+        audio.pause();//se você quiser    
     }, 200);
 }
 
-function resultado(result) {
+//criar as propriedades de vitória e derrota
+function resultado(resultados) {
 
-    if (result === "vitoria") {
+    //se eles ganharem o jogo
+    if (resultados === "vitoria") {
         vitorias++;
-        var escolha = escolheu;
-
-        var replace = document.getElementById("palavraAtual").textContent;
-        document.getElementById("palavraAtual").textContent = escolheu;
-
+        var selecao = escolheu;
+        //atualizar a palavra ganhadora e atualizar para a foto do personagem
+        var recoloca = document.getElementById("palavraAtual").textContent;
+        document.getElementById("palavraAtual").textContent = selecao;
+        
+        //chamar a div com a função da imagem
         var img = document.getElementById("img");
 
+        //recolocar a imagem com o src image conectado com o nome
         img.setAttribute("src", "assets/images/" + quem + ".jpg");
 
+        //trocar texto com o nome do personagem
         var nome = document.getElementById("quem");
         nome.textContent = quem;
-
-        vitoria();
+        //alertar que ganhou jogo e dispara som da vitória
+        ganha();
         console.log(img);
     }
 
-    else if (result === "perdeu") {
-        perdeu();
+    //se eles perderem o jogo
+    else if (resultados === "perdeu") {
+        perde();
     };
 
+    //resetar os colchetes
     tentativaAtual = [];
     tentativasRestantes = 6;
-    escolha = []; 
-    palavraAtual = [];
+    escolheu = []; //array para manter palavra escolhida
+    palavraAtual = []; 
 
+    //computador escolhe nova palavra
     escolhaDoComputador = escolhaDoPc[Math.floor(Math.random() * escolhaDoPc.length)];
 
-    quem = escolhaDoComputador;
-    escolhaDoComputador = escolhaDoComputador.toUpperCase();
+    quem = escolhaDoComputador.toUpperCase();
     console.log("Computador escolheu " + quem);
-
+    //empurrar cada letra na palavra como branco "-"
     for (var i = 0; i < escolhaDoComputador.length; i++) {
         if (escolhaDoComputador[i] === " ") {
-            escolha.push("&nbsp");
+            escolheu.push("&nbsp");
             palavraAtual.push("&nbsp");
         } else {
-            escolha.push("-");
+            escolheu.push("-");
 
             palavraAtual.push(escolhaDoComputador[i]);
         };
-        updateHTML();
+        atualizaHtml();
     };
 };
 
-updateHTML();
+atualizaHtml(); //atualiza o HTML para locar palavra em branco
 
+//teste funcão
 document.onkeyup = function (e) {
-    var usuarioPalpite = e.key;
+    var palpiteUsuario = e.key;
 
-    usuarioPalpite = usuarioPalpite.toUpperCase();
+    //mudar letras minúscula para maiúscula
+    palpiteUsuario = palpiteUsuario.toUpperCase();
 
-    console.log("Usuário aperta " + usuarioPalpite);
+    console.log("Usuário digita " + palpiteUsuario);
+    //console.log("Escolha do computador é " + escolhaDoComputador);
 
-    if (tentativaAtual.includes(usuarioPalpite)) {
-        alert("Você já teclou " + usuarioPalpite)
+    //se usuário presssiona tecla que já teclou
+    if (tentativaAtual.includes(palpiteUsuario)) {
+        alert("Você já teclou " + palpiteUsuario)
         return;
-}
-
-else if (letrasPermitidas.includes(usuarioPalpite)) {
-    tentativaAtual.push(usuarioPalpite);
-
-    if (palavraAtual.includes(usuarioPalpite)) {
-        for (var i = 0; i < palavraAtual.length; i++) {
-            if (usuarioPalpite === palavraAtual[i]) {
-                escolheu[i] = usuarioPalpite;
-            }
-        };
-
-        if (!escolheu.includes("-")) {
-            resultado("vitoria");
-        };
     }
 
-    else {
-        tentativasRestantes--;
+    //aqui, verifica se o usuário esta na verdade pressionando letras alfabéticas
+    else if (letrasPermitidas.includes(palpiteUsuario)) {
+
+        //primeiro coloca palpite do usuário no array;
+        tentativaAtual.push(palpiteUsuario);
+
+        //se a tecla dá "match" com uma letra no array
+        if (palavraAtual.includes(palpiteUsuario)) {
+
+            //recoloca os espaços em branco com a letra combinada correta.
+            for (var i = 0; i < palavraAtual.length; i++) {
+                if (palpiteUsuario === palavraAtual[i]) {
+                    escolheu[i] = palpiteUsuario;
+                }
+            };
+
+            //depois de verificar se o array não tem "brancos", se não eles ganham!
+            if (!escolheu.includes("-")) {
+                resultado("vitoria");
+            };
+        }
+
+        else {
+            tentativasRestantes--;
+        };
+
     };
-
-};
-
-updateHTML();
-
+    atualizaHtml(); //atualiza o contador de pontos
 };
