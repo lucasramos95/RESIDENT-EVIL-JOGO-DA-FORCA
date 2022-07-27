@@ -33,8 +33,6 @@ for (var i = 0; i < escolhaDoComputador.length; i++) {
 };
 
 //Verificar se ambos os arrays são do mesmo tamanho
-//console.log(pick);
-//console.log(currentWord);
 
 //criar função que atualiza o html
 function atualizaHtml() {
@@ -140,6 +138,7 @@ function resultado(resultados) {
     for (var i = 0; i < escolhaDoComputador.length; i++) {
         if (escolhaDoComputador[i] === " ") {
             escolheu.push("&nbsp");
+
             palavraAtual.push("&nbsp");
         } else {
             escolheu.push("-");
