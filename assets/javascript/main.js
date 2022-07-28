@@ -20,7 +20,7 @@ console.log("Computador Escolheu " + quem);
 
 //jogar cada letra na palavra como espaço em branco "-"
 for (var i = 0; i < escolhaDoComputador.length; i++) {
-    //se houver espaços na palavra, adicionar espaço " "
+    //se houver espaços na palavra, adicionar espaço
     if (escolhaDoComputador[i] === " ") {
         escolheu.push("&nbsp");
 
@@ -41,7 +41,7 @@ function atualizaHtml() {
     var vitoria = vitorias; //atualiza o contador de vitórias
     var tentativa = tentativasRestantes; //mostra quantas tentativas ainda restam
     var atual = tentativaAtual; //o que o usuário já escolheram
-    var selecao = escolheu; //o array que contem "_" e a resposta
+    var selecao = escolheu; //o array que contem "-" e a resposta
 
     document.getElementById("vitorias").innerHTML = vitoria; //aumenta contador se estiver ganhando
     document.getElementById("tentativa").innerHTML = tentativa; //mostra quantas tentativas ainda restam
@@ -130,9 +130,10 @@ function resultado(resultados) {
     //computador escolhe nova palavra
     escolhaDoComputador = escolhaDoPc[Math.floor(Math.random() * escolhaDoPc.length)];
 
-    quem = escolhaDoComputador.toUpperCase();
+    quem = escolhaDoComputador
+    escolhaDoComputador = escolhaDoComputador.toUpperCase();
     console.log("Computador escolheu " + quem);
-    //empurrar cada letra na palavra como branco "-"
+    //input de cada letra na palavra como branco "-"
     for (var i = 0; i < escolhaDoComputador.length; i++) {
         if (escolhaDoComputador[i] === " ") {
             escolheu.push("&nbsp");
