@@ -12,7 +12,7 @@ var letrasPermitidas = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "
 //pegar uma escolha aleatória do array com os personagens
 var escolhaDoComputador = escolhaDoPc[Math.floor(Math.random() * escolhaDoPc.length)];
 
-//"capitalize" o nome dos personagens, para o resto do código funcionar
+//Deixar o nome dos personagens em letras maiúscula, para o resto do código funcionar
 //criar nova variável para que assim, o conteúdo original é intocável
 var quem = escolhaDoComputador;
 escolhaDoComputador = escolhaDoComputador.toUpperCase();
@@ -31,8 +31,6 @@ for (var i = 0; i < escolhaDoComputador.length; i++) {
         palavraAtual.push(escolhaDoComputador[i]);
     };
 };
-
-//Verificar se ambos os arrays são do mesmo tamanho
 
 //criar função que atualiza o html
 function atualizaHtml() {

@@ -31,21 +31,20 @@
     text-align: center;
 }
 
-#gamebox {
-    display: flex;
-    color: white;
-    position: absolute;
-    font-size: 32px;
-    text-align: center;
-}
-
 .coluna {
+    color: white;
+    font-size: 20px;
     position: relative;
     align-items: center;
     justify-content: space-between;
 }
 
+#quem {
+    color: white;
+}
+
 .row {
+    padding: 50px;
     display: flex;
     justify-content: center;
 }
@@ -53,10 +52,4 @@
 .col-md-2 {
     flex: center;
     
-}
-
-.col-md-4-text-center {
-    display: flex;
-    flex-direction: column;
-    padding-top: 20px;
 }
