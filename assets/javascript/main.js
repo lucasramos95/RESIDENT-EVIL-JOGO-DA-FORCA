@@ -12,7 +12,7 @@ var letrasPermitidas = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "
 //pegar uma escolha aleatória do array com os personagens
 var escolhaDoComputador = escolhaDoPc[Math.floor(Math.random() * escolhaDoPc.length)];
 
-//Deixar o nome dos personagens em letras maiúscula, para o resto do código funcionar
+//Deixar o nome dos personagens em letras maiúsculas, para o resto do código funcionar
 //criar nova variável para que assim, o conteúdo original é intocável
 var quem = escolhaDoComputador;
 escolhaDoComputador = escolhaDoComputador.toUpperCase();

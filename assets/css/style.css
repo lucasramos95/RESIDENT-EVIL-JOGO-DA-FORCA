@@ -24,24 +24,44 @@
 }
 
 #title, .lead {
+    background-color: black;
     color: white;
     position: relative;
     text-align: center;
+    padding: 30px;
+}
+
+h1 {
+    color: white;
+}
+
+.display-4 {
+    opacity: 85%;
+}
+
+#instructions {
+    opacity: 85%;
 }
 
 .row {
-    padding: 50px;
+    padding: 70px;
     display: flex;
     justify-content: center;
 }
 
 #quem {
+    font-size: 20px;
     color: white;
+}
+
+#img {
+    width: 71%;
+    margin-left: 15%;
 }
 
 .coluna {
     color: white;
-    font-size: 20px;
+    font-size: 22px;
     position: relative;
     align-items: center;
     justify-content: space-between;
