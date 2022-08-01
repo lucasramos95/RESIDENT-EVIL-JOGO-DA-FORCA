@@ -28,7 +28,7 @@
     color: white;
     position: relative;
     text-align: center;
-    padding: 30px;
+    padding: 10px;
 }
 
 h1 {
@@ -40,11 +40,12 @@ h1 {
 }
 
 #instructions {
+    font-size: 18px;
     opacity: 85%;
 }
 
 .row {
-    padding: 70px;
+    padding: 50px;
     display: flex;
     justify-content: center;
 }
