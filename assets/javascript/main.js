@@ -85,7 +85,7 @@ function ganha() {
     setTimeout(function () {
         loopAudio = true;
         audio.play();
-        alert("Você sobreviveu! Quer tentar novamente");
+        alert("Você sobreviveu! Quer tentar novamente?");
         loopAudio = false;
         audio.pause();//se você quiser    
     }, 200);
